@@ -36,7 +36,7 @@ public:
     }
 
 	int* get_move(char state[6][6], char symbole){
-		  static int** moveList = new int*[36];
+		static int** moveList = new int*[36];
         int num = 0;
 	    for (int row=0;row<6;row++){
             for (int column=0;column<6;column++){	
@@ -62,35 +62,35 @@ private:
 
 extern "C" {
 
-AIPlayer py;
+    AIPlayer py;
 
-char get_symbole(){
-    return py.get_symbole();
-}
+    char get_symbole(){
+        return py.get_symbole();
+    }
 
-int add_symbole(char symbole1){
+    int add_symbole(char symbole1){
 
-	return py.add_symbole(symbole1);
-}
+        return py.add_symbole(symbole1);
+    }
 
-bool get_isAI(){
-    return py.get_isAI();
-}
-int add_score(int score1){
+    bool get_isAI(){
+        return py.get_isAI();
+    }
+    int add_score(int score1){
 
-    return py.add_score(score1);
-}
-int add_isAI(bool isAI1){
+        return py.add_score(score1);
+    }
+    int add_isAI(bool isAI1){
 
-    return py.add_isAI(isAI1);
-}
-int get_score(){
-    return py.get_score();
-}
+        return py.add_isAI(isAI1);
+    }
+    int get_score(){
+        return py.get_score();
+    }
 
-int* get_move(char state[6][6], char symbole){
+    int* get_move(char state[6][6], char symbole){
 
-	return py.get_move(state,symbole);
+        return py.get_move(state,symbole);
 
-}
+    }
 }

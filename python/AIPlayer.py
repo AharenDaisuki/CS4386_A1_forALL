@@ -1,11 +1,13 @@
 import copy
-import datetime 
+import datetime
+import time
 from math import inf as infinity
 import random
 import numpy as np
+from multiprocessing import Pool
 
-MCTS_MAX_ITERATION = 14000
-TIME_MAX_ITERATION = 9800000
+PARALLEL_SIMULATION_N = 4
+MAX_ITERATION_TIME = 10
 
 class Utils:
     @staticmethod
@@ -81,33 +83,6 @@ class Utils:
         utility += check_col(state, col)
         return utility
     
-    # @staticmethod
-    # def enemyMove(prev_state, current_state, player):
-    #     '''given my player, return the last move of enemy if any'''
-    #     print('enemy move')
-    #     isPlayerX = (player=='X') # is player 1?
-    #     isPlayerO = (player=='O') # is player 2?
-
-    #     if isPlayerX:
-    #         # player 1
-    #         for x, row in enumerate(current_state):
-    #             for y, cell in enumerate(row):
-    #                 if not Utils.is_black_cell([x, y]):
-    #                     print(str(prev_state[x][y]) + ' ' + str(current_state[x][y]))
-    #                     if prev_state[x][y] == None and current_state[x][y] == 'O':
-    #                         return True, [x, y]
-    #     elif isPlayerO:
-    #         # player 2
-    #         for x, row in enumerate(current_state):
-    #             for y, cell in enumerate(row):
-    #                  if Utils.is_black_cell([x, y]):
-    #                     print(x, y)
-    #                     print(str(prev_state[x][y]) + ' ' + str(current_state[x][y]))
-    #                     if prev_state[x][y] == None and current_state[x][y] == 'X':
-    #                         return True, [x, y]
-                                      
-    #     return False, []
-    
     @staticmethod
     def playerBinToSymbol(binary):
         return 'X' if binary==1 else 'O'
@@ -137,6 +112,18 @@ class MonteCarloTreeNode:
 
     def __str__(self):
         return "move: {}, utility: ({}/{}) = {}".format(self.action, self.w, self.n, self.w/self.n)    
+    
+class Timer:
+    def __init__(self, time_limit, tol):
+        self.tic = time.time()
+        self.time_limit = time_limit
+        self.tol = tol
+
+    def tac(self):
+        return time.time() - self.tic
+
+    def check(self):
+        return self.tac() > self.time_limit - self.tol
     
 class AIPlayer(object):
     def __init__(self, name, symbole, isAI=False):
@@ -194,9 +181,10 @@ class AIPlayer(object):
     #                 cells.append([x, y])
     #     return cells
     
-    def mcts(self, max_iterative=15000):
-        def ucb(node, c = np.sqrt(2)):
+    def mcts(self, timer):
+        def ucb(node, c = np.sqrt(0.5)):
             '''return ucb of node'''
+            # TODO: modify c
             return np.inf if node.n == 0 else node.w/node.n + c * np.sqrt(np.log(node.parent.n) / node.n)
 
         def select(node):
@@ -207,16 +195,39 @@ class AIPlayer(object):
         
         def expand(node):
             '''expand the leaf node by adding all possible moves'''
+            # def expand_child(parent_state, parent_player, move, node):
+            #     child_state = Utils.make_a_move(parent_state, move, Utils.playerBinToSymbol(parent_player))
+            #     node.children.append(
+            #             MonteCarloTreeNode(
+            #                 player=parent_player^1, 
+            #                 state=child_state,
+            #                 action=move,
+            #                 parent=node,
+            #                 w = 0,
+            #                 n = 0
+            #             )
+            #         )
+            #     print(len(node.child))
+            #     return
+                
             parent_state = node.state
             parent_player = node.player
-            child_player = parent_player ^ 1
+            #child_player = parent_player ^ 1
             # assert(parent_player==1 and child_player==0 or parent_player==0 and child_player==1)
             if not node.children and not Utils.is_game_over(parent_state):
+                # all_moves = Utils.all_moves(parent_state, Utils.playerBinToSymbol(parent_player)) 
+                # move_n = len(all_moves)
+                # pool = Pool(move_n)
+                # for move in all_moves:
+                #     pool.apply_async(expand_child, args=(parent_state, parent_player, move, node))
+                # pool.close()
+                # pool.join()
+
                 for move in Utils.all_moves(parent_state, Utils.playerBinToSymbol(parent_player)):
                     child_state = Utils.make_a_move(parent_state, move, Utils.playerBinToSymbol(parent_player))
                     node.children.append(
                         MonteCarloTreeNode(
-                            player=child_player, 
+                            player=parent_player^1, 
                             state=child_state,
                             action=move,
                             parent=node,
@@ -230,16 +241,17 @@ class AIPlayer(object):
             '''return simulate result in terms of player'''
             my_score = self.get_score()
             enemy_score = self._get_enemy_score()
+            root_player = self.root.player
             tmp_state, tmp_player = state, player
             while not Utils.is_game_over(tmp_state):
                 player_symbol = Utils.playerBinToSymbol(tmp_player)
                 games = Utils.all_moves(tmp_state, player_symbol)
-                # assert(len(games) > 0)
+                        # assert(len(games) > 0)
                 move = random.choice(games)
                 tmp_state = Utils.make_a_move(tmp_state, move, player_symbol)
-                if tmp_player==self.root.player:
+                if tmp_player==root_player:
                     my_score += Utils.reward(tmp_state, move)
-                elif tmp_player==self.root.player^1:
+                elif tmp_player==root_player^1:
                     enemy_score += Utils.reward(tmp_state, move)
                 tmp_player ^= 1 # interchange player
             if my_score > enemy_score:
@@ -247,6 +259,41 @@ class AIPlayer(object):
             elif my_score < enemy_score:
                 return -1
             return 0
+                    
+        # def multi_simulate(state, player):
+        #     '''simulate 4 games in a row'''
+        #     # def simulate(state, player):
+        #     #     '''return simulate result in terms of player'''
+        #     #     my_score = self.get_score()
+        #     #     enemy_score = self._get_enemy_score()
+        #     #     tmp_state, tmp_player = state, player
+        #     #     while not Utils.is_game_over(tmp_state):
+        #     #         player_symbol = Utils.playerBinToSymbol(tmp_player)
+        #     #         games = Utils.all_moves(tmp_state, player_symbol)
+        #     #         # assert(len(games) > 0)
+        #     #         move = random.choice(games)
+        #     #         tmp_state = Utils.make_a_move(tmp_state, move, player_symbol)
+        #     #         if tmp_player==self.root.player:
+        #     #             my_score += Utils.reward(tmp_state, move)
+        #     #         elif tmp_player==self.root.player^1:
+        #     #             enemy_score += Utils.reward(tmp_state, move)
+        #     #         tmp_player ^= 1 # interchange player
+        #     #     if my_score > enemy_score:
+        #     #         return 1
+        #     #     elif my_score < enemy_score:
+        #     #         return -1
+        #     #     return 0
+            
+        #     my_score = self.get_score()
+        #     enemy_score = self._get_enemy_score()
+        #     root_player = self.root.player
+        #     pool = Pool(PARALLEL_SIMULATION_N)
+        #     simulation_ret = [pool.apply_async(simulate, args=(state, player, my_score, enemy_score, root_player)) for i in range(0, PARALLEL_SIMULATION_N)]
+        #     pool.close()
+        #     pool.join()
+        #     # print([s.get() for s in simulation_ret])
+        #     return [s.get() for s in simulation_ret]
+
         
         def backpropagate(node, utility):
             node_player = node.player
@@ -264,32 +311,27 @@ class AIPlayer(object):
         # initial game state
         root = self.root
         iterative_n = 0
-        time = 0.0
         while True:
-            start = datetime.datetime.now()
             leaf = select(root)
             child = expand(leaf)
             result = simulate(child.state, child.player)
             backpropagate(child, result)
-            end = datetime.datetime.now()
-            time_delta = (end - start)
-            time += time_delta.microseconds
             iterative_n += 1
-            if time > TIME_MAX_ITERATION:
-                print('time:' + str(time))
-                print('iteration:' + str(iterative_n))
-                break
-            elif iterative_n > max_iterative:
-                print('time:' + str(time))
-                print('iteration:' + str(iterative_n))
+            if timer.check():
                 break
         
+        total_n = 0
         # for child in root.children:
+        #     total_n += child.n
         #     print('**************************')
         #     print('move: ' + str(child.action))
         #     print(child)
         #     print('**************************')
+        # print('root #games: ' + str(root.n))
+        # print('child #games: ' + str(total_n))        
 
+        # print('iteration:' + str(iterative_n))
+        assert(len(root.children) > 0)
         optimal_solution = max(root.children, key=lambda x : x.w/x.n)
 
         # print(optimal_solution)
@@ -297,9 +339,9 @@ class AIPlayer(object):
             
     def get_move(self,state,player):
         '''return a move'''
+        timer = Timer(10, 1.2)
         player_bin = Utils.playerSymbolToBin(player)
         # assert(player_bin==1 or player_bin==0)  
-        # TODO: modify get_move()
         flag, last_move = False, None
         if self._get_move_n()==0:
             self._update_root(MonteCarloTreeNode(player=player_bin, state=state, w=0, n=0))
@@ -325,9 +367,10 @@ class AIPlayer(object):
                 for child in self.root.children:
                     if child.action == last_move:
                         self._update_root(child)    
+        # time offset in seconds                
 
         # assert(self.root != None)
         # assert(self.root.player == player_bin)
-        move = self.mcts(MCTS_MAX_ITERATION)
+        move = self.mcts(timer)
         self._confirm_move(move)
         return move       

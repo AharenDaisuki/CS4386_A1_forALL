@@ -1,0 +1,147 @@
+the first player is AI (PYTHON)
+the second player is AI (JAVA)
+player1 (green) plays first
+Player1 (Green,PYTHON), move is: 4 2
+Current score for player1 (green), player2 (red): 0 0
+Player1 (Green) Time: 8.800395011901855
+------------------------------------------
+Player2 (Red,JAVA), move is: 0 1
+Current score for player1 (green), player2 (red): 0 0
+Player2 (Red) Time: 0.00043392181396484375
+------------------------------------------
+Player1 (Green,PYTHON), move is: 5 3
+Current score for player1 (green), player2 (red): 0 0
+Player1 (Green) Time: 8.86903691291809
+------------------------------------------
+Player2 (Red,JAVA), move is: 5 4
+Current score for player1 (green), player2 (red): 0 0
+Player2 (Red) Time: 7.200241088867188e-05
+------------------------------------------
+Player1 (Green,PYTHON), move is: 3 5
+Current score for player1 (green), player2 (red): 0 0
+Player1 (Green) Time: 8.958307981491089
+------------------------------------------
+Player2 (Red,JAVA), move is: 4 1
+Current score for player1 (green), player2 (red): 0 0
+Player2 (Red) Time: 0.00013899803161621094
+------------------------------------------
+Player1 (Green,PYTHON), move is: 2 2
+Current score for player1 (green), player2 (red): 0 0
+Player1 (Green) Time: 8.9259033203125
+------------------------------------------
+Player2 (Red,JAVA), move is: 2 5
+Current score for player1 (green), player2 (red): 0 0
+Player2 (Red) Time: 6.914138793945312e-05
+------------------------------------------
+Player1 (Green,PYTHON), move is: 1 5
+Current score for player1 (green), player2 (red): 3 0
+Player1 (Green) Time: 8.80049991607666
+------------------------------------------
+Player2 (Red,JAVA), move is: 2 1
+Current score for player1 (green), player2 (red): 3 0
+Player2 (Red) Time: 0.00011610984802246094
+------------------------------------------
+Player1 (Green,PYTHON), move is: 5 1
+Current score for player1 (green), player2 (red): 3 0
+Player1 (Green) Time: 9.066848039627075
+------------------------------------------
+Player2 (Red,JAVA), move is: 2 3
+Current score for player1 (green), player2 (red): 3 3
+Player2 (Red) Time: 9.918212890625e-05
+------------------------------------------
+Player1 (Green,PYTHON), move is: 2 4
+Current score for player1 (green), player2 (red): 3 3
+Player1 (Green) Time: 8.900951147079468
+------------------------------------------
+Player2 (Red,JAVA), move is: 3 2
+Current score for player1 (green), player2 (red): 3 6
+Player2 (Red) Time: 8.106231689453125e-05
+------------------------------------------
+Player1 (Green,PYTHON), move is: 4 4
+Current score for player1 (green), player2 (red): 3 6
+Player1 (Green) Time: 8.80040693283081
+------------------------------------------
+Player2 (Red,JAVA), move is: 4 5
+Current score for player1 (green), player2 (red): 3 6
+Player2 (Red) Time: 9.202957153320312e-05
+------------------------------------------
+Player1 (Green,PYTHON), move is: 3 3
+Current score for player1 (green), player2 (red): 3 6
+Player1 (Green) Time: 9.238127708435059
+------------------------------------------
+Player2 (Red,JAVA), move is: 1 0
+Current score for player1 (green), player2 (red): 3 6
+Player2 (Red) Time: 9.298324584960938e-05
+------------------------------------------
+Player1 (Green,PYTHON), move is: 1 1
+Current score for player1 (green), player2 (red): 6 6
+Player1 (Green) Time: 8.800251007080078
+------------------------------------------
+Player2 (Red,JAVA), move is: 1 2
+Current score for player1 (green), player2 (red): 6 9
+Player2 (Red) Time: 5.698204040527344e-05
+------------------------------------------
+Player1 (Green,PYTHON), move is: 0 0
+Current score for player1 (green), player2 (red): 6 9
+Player1 (Green) Time: 9.003609657287598
+------------------------------------------
+Player2 (Red,JAVA), move is: 5 0
+Current score for player1 (green), player2 (red): 6 9
+Player2 (Red) Time: 5.2928924560546875e-05
+------------------------------------------
+Player1 (Green,PYTHON), move is: 2 0
+Current score for player1 (green), player2 (red): 15 9
+Player1 (Green) Time: 9.10097622871399
+------------------------------------------
+Player2 (Red,JAVA), move is: 1 4
+Current score for player1 (green), player2 (red): 15 9
+Player2 (Red) Time: 5.2928924560546875e-05
+------------------------------------------
+Player1 (Green,PYTHON), move is: 0 2
+Current score for player1 (green), player2 (red): 18 9
+Player1 (Green) Time: 9.302741050720215
+------------------------------------------
+Player2 (Red,JAVA), move is: 5 2
+Current score for player1 (green), player2 (red): 18 15
+Player2 (Red) Time: 5.1975250244140625e-05
+------------------------------------------
+Player1 (Green,PYTHON), move is: 3 1
+Current score for player1 (green), player2 (red): 27 15
+Player1 (Green) Time: 8.99506402015686
+------------------------------------------
+Player2 (Red,JAVA), move is: 0 5
+Current score for player1 (green), player2 (red): 27 15
+Player2 (Red) Time: 0.00011301040649414062
+------------------------------------------
+Player1 (Green,PYTHON), move is: 0 4
+Current score for player1 (green), player2 (red): 30 15
+Player1 (Green) Time: 8.800060033798218
+------------------------------------------
+Player2 (Red,JAVA), move is: 3 4
+Current score for player1 (green), player2 (red): 30 21
+Player2 (Red) Time: 4.982948303222656e-05
+------------------------------------------
+Player1 (Green,PYTHON), move is: 1 3
+Current score for player1 (green), player2 (red): 39 21
+Player1 (Green) Time: 8.800060033798218
+------------------------------------------
+Player2 (Red,JAVA), move is: 3 0
+Current score for player1 (green), player2 (red): 39 27
+Player2 (Red) Time: 6.103515625e-05
+------------------------------------------
+Player1 (Green,PYTHON), move is: 5 5
+Current score for player1 (green), player2 (red): 51 27
+Player1 (Green) Time: 8.800041913986206
+------------------------------------------
+Player2 (Red,JAVA), move is: 4 3
+Current score for player1 (green), player2 (red): 51 27
+Player2 (Red) Time: 0.0001850128173828125
+------------------------------------------
+Player1 (Green,PYTHON), move is: 4 0
+Current score for player1 (green), player2 (red): 63 27
+Player1 (Green) Time: 8.800053834915161
+------------------------------------------
+Player2 (Red,JAVA), move is: 0 3
+Current score for player1 (green), player2 (red): 63 39
+Player2 (Red) Time: 0.00012993812561035156
+------------------------------------------

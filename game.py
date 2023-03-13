@@ -335,6 +335,10 @@ def gameLoop(screen, p1, p2):
 
 if __name__ == "__main__":
 
+    # TODO: remove log
+    log_name = './log/log' + str(random.randint(0, 99999999)).zfill(8) + '.txt'
+    sys.stdout = open(log_name, 'w')
+
     # p1_language= {Human,CPP, JAVA,PYTHON}
     # The 'Human' mode is used for testing your ai algorithm
     p1_language= sys.argv[1]
@@ -421,6 +425,10 @@ if __name__ == "__main__":
 ##        gui.writeScreen(screen, "Click to", line=2)
         gui.ask(screen, " Exit!", line=3)
         gui.clearScreen(screen)
+
+    sys.stdout.close()
+    sys.stdout = sys.__stdout__    
+
     if p1_language =="JAVA" or p2_language=="JAVA":
         jpype.shutdownJVM()
 

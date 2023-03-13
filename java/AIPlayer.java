@@ -27,8 +27,10 @@ public class AIPlayer {
 		return score;
 	}
 
+    @SuppressWarnings("unchecked")
     public int[] get_move(ArrayList state, String symbole){
-
+		Boolean isPlayerX = (symbole.equals("X"));
+		Boolean isPlayerO = (symbole.equals("O"));
     	ArrayList moveList= new ArrayList();
 	    for (int row=0;row<6;row++){
             for (int column=0;column<6;column++){	
@@ -37,10 +39,18 @@ public class AIPlayer {
             		int[] move = new int[2];
 					move[0]=row;
 					move[1]=column;
-					moveList.add(move);
+					if (isPlayerX && (row+column)%2==0){
+						// System.out.println(move);
+						moveList.add(move);	
+					} else if (isPlayerO && (row+column)%2==1){
+						// System.out.println(move);
+						moveList.add(move);
+					}
                 }
             }
         }
+		//System.out.println(state);
+		//System.out.println(moveList);
         int rand = (int)(Math.random() * moveList.size());
         return (int[]) moveList.get(rand);
     }
