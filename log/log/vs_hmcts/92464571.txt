@@ -1,0 +1,181 @@
+player1 (green) plays first
+mcts with heuristic
+Player1 (Green,PYTHON), move is: 1 1
+Current score for player1 (green), player2 (red): 0 0
+Player1 (Green) Time: 0.001146078109741211
+------------------------------------------
+final:  (0, 1)
+Player2 (Red,Python), move is: 0 1
+Current score for player1 (green), player2 (red): 0 0
+Player2 (Red) Time: 9.00293493270874
+------------------------------------------
+mcts with heuristic
+Player1 (Green,PYTHON), move is: 3 5
+Current score for player1 (green), player2 (red): 0 0
+Player1 (Green) Time: 9.000836849212646
+------------------------------------------
+final:  (2, 1)
+Player2 (Red,Python), move is: 2 1
+Current score for player1 (green), player2 (red): 0 3
+Player2 (Red) Time: 9.000584840774536
+------------------------------------------
+mcts with heuristic
+Player1 (Green,PYTHON), move is: 0 4
+Current score for player1 (green), player2 (red): 0 3
+Player1 (Green) Time: 9.000455856323242
+------------------------------------------
+final:  (0, 3)
+Player2 (Red,Python), move is: 0 3
+Current score for player1 (green), player2 (red): 0 3
+Player2 (Red) Time: 9.002010822296143
+------------------------------------------
+mcts with heuristic
+Player1 (Green,PYTHON), move is: 4 0
+Current score for player1 (green), player2 (red): 0 3
+Player1 (Green) Time: 9.000627994537354
+------------------------------------------
+final:  (1, 0)
+Player2 (Red,Python), move is: 1 0
+Current score for player1 (green), player2 (red): 0 3
+Player2 (Red) Time: 9.002328157424927
+------------------------------------------
+mcts with heuristic
+Player1 (Green,PYTHON), move is: 5 3
+Current score for player1 (green), player2 (red): 0 3
+Player1 (Green) Time: 9.00020718574524
+------------------------------------------
+final:  (1, 2)
+Player2 (Red,Python), move is: 1 2
+Current score for player1 (green), player2 (red): 0 6
+Player2 (Red) Time: 9.002397060394287
+------------------------------------------
+mcts with heuristic
+Player1 (Green,PYTHON), move is: 4 4
+Current score for player1 (green), player2 (red): 0 6
+Player1 (Green) Time: 9.000017166137695
+------------------------------------------
+final:  (2, 3)
+Player2 (Red,Python), move is: 2 3
+Current score for player1 (green), player2 (red): 0 6
+Player2 (Red) Time: 9.001122951507568
+------------------------------------------
+mcts with heuristic
+Player1 (Green,PYTHON), move is: 1 3
+Current score for player1 (green), player2 (red): 3 6
+Player1 (Green) Time: 9.000293016433716
+------------------------------------------
+final:  (3, 0)
+Player2 (Red,Python), move is: 3 0
+Current score for player1 (green), player2 (red): 3 6
+Player2 (Red) Time: 9.00241494178772
+------------------------------------------
+mcts with heuristic
+Player1 (Green,PYTHON), move is: 3 1
+Current score for player1 (green), player2 (red): 3 6
+Player1 (Green) Time: 9.000243902206421
+------------------------------------------
+final:  (3, 2)
+Player2 (Red,Python), move is: 3 2
+Current score for player1 (green), player2 (red): 3 9
+Player2 (Red) Time: 9.001381874084473
+------------------------------------------
+mcts with heuristic
+Player1 (Green,PYTHON), move is: 2 2
+Current score for player1 (green), player2 (red): 9 9
+Player1 (Green) Time: 9.000095844268799
+------------------------------------------
+final:  (4, 5)
+Player2 (Red,Python), move is: 4 5
+Current score for player1 (green), player2 (red): 9 9
+Player2 (Red) Time: 9.000842094421387
+------------------------------------------
+mcts with heuristic
+Player1 (Green,PYTHON), move is: 5 5
+Current score for player1 (green), player2 (red): 12 9
+Player1 (Green) Time: 9.010637044906616
+------------------------------------------
+final:  (5, 4)
+Player2 (Red,Python), move is: 5 4
+Current score for player1 (green), player2 (red): 12 12
+Player2 (Red) Time: 9.001298189163208
+------------------------------------------
+mcts with heuristic
+Player1 (Green,PYTHON), move is: 0 2
+Current score for player1 (green), player2 (red): 12 12
+Player1 (Green) Time: 9.000202894210815
+------------------------------------------
+final:  (3, 4)
+Player2 (Red,Python), move is: 3 4
+Current score for player1 (green), player2 (red): 12 15
+Player2 (Red) Time: 9.000967025756836
+------------------------------------------
+mcts with heuristic
+Player1 (Green,PYTHON), move is: 2 0
+Current score for player1 (green), player2 (red): 12 15
+Player1 (Green) Time: 9.000049829483032
+------------------------------------------
+final:  (4, 3)
+Player2 (Red,Python), move is: 4 3
+Current score for player1 (green), player2 (red): 12 18
+Player2 (Red) Time: 9.000561237335205
+------------------------------------------
+mcts with heuristic
+Player1 (Green,PYTHON), move is: 3 3
+Current score for player1 (green), player2 (red): 24 18
+Player1 (Green) Time: 9.00002408027649
+------------------------------------------
+final:  (0, 5)
+Player2 (Red,Python), move is: 0 5
+Current score for player1 (green), player2 (red): 24 18
+Player2 (Red) Time: 9.00075912475586
+------------------------------------------
+mcts with heuristic
+Player1 (Green,PYTHON), move is: 0 0
+Current score for player1 (green), player2 (red): 30 18
+Player1 (Green) Time: 9.000029802322388
+------------------------------------------
+final:  (5, 0)
+Player2 (Red,Python), move is: 5 0
+Current score for player1 (green), player2 (red): 30 24
+Player2 (Red) Time: 9.000444889068604
+------------------------------------------
+mcts with heuristic
+Player1 (Green,PYTHON), move is: 5 1
+Current score for player1 (green), player2 (red): 30 24
+Player1 (Green) Time: 9.000030994415283
+------------------------------------------
+final:  (4, 1)
+Player2 (Red,Python), move is: 4 1
+Current score for player1 (green), player2 (red): 30 30
+Player2 (Red) Time: 9.000348091125488
+------------------------------------------
+mcts with heuristic
+Player1 (Green,PYTHON), move is: 4 2
+Current score for player1 (green), player2 (red): 36 30
+Player1 (Green) Time: 9.000022888183594
+------------------------------------------
+final:  (5, 2)
+Player2 (Red,Python), move is: 5 2
+Current score for player1 (green), player2 (red): 36 42
+Player2 (Red) Time: 9.0002601146698
+------------------------------------------
+mcts with heuristic
+Player1 (Green,PYTHON), move is: 1 5
+Current score for player1 (green), player2 (red): 36 42
+Player1 (Green) Time: 9.000016927719116
+------------------------------------------
+final:  (1, 4)
+Player2 (Red,Python), move is: 1 4
+Current score for player1 (green), player2 (red): 36 48
+Player2 (Red) Time: 9.000107049942017
+------------------------------------------
+mcts with heuristic
+Player1 (Green,PYTHON), move is: 2 4
+Current score for player1 (green), player2 (red): 42 48
+Player1 (Green) Time: 9.0000901222229
+------------------------------------------
+final:  (2, 5)
+Player2 (Red,Python), move is: 2 5
+Current score for player1 (green), player2 (red): 42 60
+Player2 (Red) Time: 9.00016164779663
+------------------------------------------

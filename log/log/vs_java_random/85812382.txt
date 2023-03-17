@@ -1,0 +1,145 @@
+player2 (red) plays first
+Player2 (Red,JAVA), move is: 1 2
+Current score for player1 (green), player2 (red): 0 0
+Player2 (Red) Time: 0.0004839897155761719
+------------------------------------------
+Player1 (Green,C++), move is: 2 2
+Current score for player1 (green), player2 (red): 0 0
+Player1 (Green) Time: 2.5033950805664062e-05
+------------------------------------------
+Player2 (Red,JAVA), move is: 5 2
+Current score for player1 (green), player2 (red): 0 0
+Player2 (Red) Time: 0.00012803077697753906
+------------------------------------------
+Player1 (Green,C++), move is: 0 2
+Current score for player1 (green), player2 (red): 3 0
+Player1 (Green) Time: 0.00016880035400390625
+------------------------------------------
+Player2 (Red,JAVA), move is: 4 3
+Current score for player1 (green), player2 (red): 3 0
+Player2 (Red) Time: 0.00032711029052734375
+------------------------------------------
+Player1 (Green,C++), move is: 4 0
+Current score for player1 (green), player2 (red): 3 0
+Player1 (Green) Time: 0.00018787384033203125
+------------------------------------------
+Player2 (Red,JAVA), move is: 4 1
+Current score for player1 (green), player2 (red): 3 0
+Player2 (Red) Time: 0.00012803077697753906
+------------------------------------------
+Player1 (Green,C++), move is: 3 5
+Current score for player1 (green), player2 (red): 3 0
+Player1 (Green) Time: 0.00014090538024902344
+------------------------------------------
+Player2 (Red,JAVA), move is: 5 0
+Current score for player1 (green), player2 (red): 3 0
+Player2 (Red) Time: 5.91278076171875e-05
+------------------------------------------
+Player1 (Green,C++), move is: 5 5
+Current score for player1 (green), player2 (red): 3 0
+Player1 (Green) Time: 0.0003681182861328125
+------------------------------------------
+Player2 (Red,JAVA), move is: 2 3
+Current score for player1 (green), player2 (red): 3 0
+Player2 (Red) Time: 8.296966552734375e-05
+------------------------------------------
+Player1 (Green,C++), move is: 2 4
+Current score for player1 (green), player2 (red): 6 0
+Player1 (Green) Time: 0.0001888275146484375
+------------------------------------------
+Player2 (Red,JAVA), move is: 0 5
+Current score for player1 (green), player2 (red): 6 0
+Player2 (Red) Time: 7.891654968261719e-05
+------------------------------------------
+Player1 (Green,C++), move is: 3 3
+Current score for player1 (green), player2 (red): 9 0
+Player1 (Green) Time: 0.00025200843811035156
+------------------------------------------
+Player2 (Red,JAVA), move is: 2 5
+Current score for player1 (green), player2 (red): 9 0
+Player2 (Red) Time: 5.5789947509765625e-05
+------------------------------------------
+Player1 (Green,C++), move is: 5 3
+Current score for player1 (green), player2 (red): 9 0
+Player1 (Green) Time: 0.00019407272338867188
+------------------------------------------
+Player2 (Red,JAVA), move is: 2 1
+Current score for player1 (green), player2 (red): 9 0
+Player2 (Red) Time: 5.91278076171875e-05
+------------------------------------------
+Player1 (Green,C++), move is: 2 0
+Current score for player1 (green), player2 (red): 15 0
+Player1 (Green) Time: 0.0001590251922607422
+------------------------------------------
+Player2 (Red,JAVA), move is: 1 0
+Current score for player1 (green), player2 (red): 15 0
+Player2 (Red) Time: 7.104873657226562e-05
+------------------------------------------
+Player1 (Green,C++), move is: 1 1
+Current score for player1 (green), player2 (red): 18 0
+Player1 (Green) Time: 0.00017690658569335938
+------------------------------------------
+Player2 (Red,JAVA), move is: 3 4
+Current score for player1 (green), player2 (red): 18 3
+Player2 (Red) Time: 0.00022602081298828125
+------------------------------------------
+Player1 (Green,C++), move is: 4 4
+Current score for player1 (green), player2 (red): 21 3
+Player1 (Green) Time: 0.00013685226440429688
+------------------------------------------
+Player2 (Red,JAVA), move is: 1 4
+Current score for player1 (green), player2 (red): 21 3
+Player2 (Red) Time: 6.985664367675781e-05
+------------------------------------------
+Player1 (Green,C++), move is: 0 0
+Current score for player1 (green), player2 (red): 24 3
+Player1 (Green) Time: 0.00017690658569335938
+------------------------------------------
+Player2 (Red,JAVA), move is: 3 0
+Current score for player1 (green), player2 (red): 24 9
+Player2 (Red) Time: 9.918212890625e-05
+------------------------------------------
+Player1 (Green,C++), move is: 3 1
+Current score for player1 (green), player2 (red): 24 9
+Player1 (Green) Time: 0.00014090538024902344
+------------------------------------------
+Player2 (Red,JAVA), move is: 0 1
+Current score for player1 (green), player2 (red): 24 12
+Player2 (Red) Time: 8.296966552734375e-05
+------------------------------------------
+Player1 (Green,C++), move is: 5 1
+Current score for player1 (green), player2 (red): 30 12
+Player1 (Green) Time: 0.00016689300537109375
+------------------------------------------
+Player2 (Red,JAVA), move is: 0 3
+Current score for player1 (green), player2 (red): 30 12
+Player2 (Red) Time: 0.00011491775512695312
+------------------------------------------
+Player1 (Green,C++), move is: 1 3
+Current score for player1 (green), player2 (red): 36 12
+Player1 (Green) Time: 0.00013017654418945312
+------------------------------------------
+Player2 (Red,JAVA), move is: 5 4
+Current score for player1 (green), player2 (red): 36 18
+Player2 (Red) Time: 5.91278076171875e-05
+------------------------------------------
+Player1 (Green,C++), move is: 0 4
+Current score for player1 (green), player2 (red): 48 18
+Player1 (Green) Time: 0.00012922286987304688
+------------------------------------------
+Player2 (Red,JAVA), move is: 4 5
+Current score for player1 (green), player2 (red): 48 21
+Player2 (Red) Time: 6.890296936035156e-05
+------------------------------------------
+Player1 (Green,C++), move is: 1 5
+Current score for player1 (green), player2 (red): 60 21
+Player1 (Green) Time: 8.893013000488281e-05
+------------------------------------------
+Player2 (Red,JAVA), move is: 3 2
+Current score for player1 (green), player2 (red): 60 27
+Player2 (Red) Time: 7.915496826171875e-05
+------------------------------------------
+Player1 (Green,C++), move is: 4 2
+Current score for player1 (green), player2 (red): 72 27
+Player1 (Green) Time: 0.00010800361633300781
+------------------------------------------

@@ -1,0 +1,163 @@
+player2 (red) plays first
+{(0, 1): 0, (0, 3): 0, (0, 5): 0, (1, 0): 0, (1, 2): 0, (1, 4): 0, (2, 1): 0, (2, 3): 0, (2, 5): 0, (3, 0): 0, (3, 2): 0, (3, 4): 0, (4, 1): 0, (4, 3): 0, (4, 5): 0, (5, 0): 0, (5, 2): 0, (5, 4): 0}
+Player2 (Red,Python), move is: 1 2
+Current score for player1 (green), player2 (red): 0 0
+Player2 (Red) Time: 0.0002129077911376953
+------------------------------------------
+Player1 (Green,C++), move is: 4 2
+Current score for player1 (green), player2 (red): 0 0
+Player1 (Green) Time: 3.0994415283203125e-05
+------------------------------------------
+{(0, 1): 0, (0, 3): 0, (0, 5): 0, (1, 0): 0, (1, 4): 0, (2, 1): 0, (2, 3): 0, (2, 5): 0, (3, 0): 0, (3, 2): 0, (3, 4): 0, (4, 1): 0, (4, 3): 0, (4, 5): 0, (5, 0): 0, (5, 2): 0, (5, 4): 0}
+Player2 (Red,Python), move is: 0 1
+Current score for player1 (green), player2 (red): 0 0
+Player2 (Red) Time: 0.00029397010803222656
+------------------------------------------
+Player1 (Green,C++), move is: 0 4
+Current score for player1 (green), player2 (red): 0 0
+Player1 (Green) Time: 0.000308990478515625
+------------------------------------------
+{(0, 3): 0, (0, 5): 0, (1, 0): 0, (1, 4): 0, (2, 1): 0, (2, 3): 0, (2, 5): 0, (3, 0): 0, (3, 2): 0, (3, 4): 0, (4, 1): 0, (4, 3): 0, (4, 5): 0, (5, 0): 0, (5, 2): 0, (5, 4): 0}
+Player2 (Red,Python), move is: 0 3
+Current score for player1 (green), player2 (red): 0 0
+Player2 (Red) Time: 0.0003540515899658203
+------------------------------------------
+Player1 (Green,C++), move is: 0 2
+Current score for player1 (green), player2 (red): 0 0
+Player1 (Green) Time: 0.00021314620971679688
+------------------------------------------
+{(0, 5): -6, (1, 0): 0, (1, 4): 0, (2, 1): 0, (2, 3): 0, (2, 5): 0, (3, 0): 0, (3, 2): 0, (3, 4): 0, (4, 1): 0, (4, 3): 0, (4, 5): 0, (5, 0): 0, (5, 2): 0, (5, 4): 0}
+Player2 (Red,Python), move is: 4 1
+Current score for player1 (green), player2 (red): 0 0
+Player2 (Red) Time: 0.00015997886657714844
+------------------------------------------
+Player1 (Green,C++), move is: 4 0
+Current score for player1 (green), player2 (red): 3 0
+Player1 (Green) Time: 0.00024080276489257812
+------------------------------------------
+{(0, 5): -6, (1, 0): 0, (1, 4): 0, (2, 1): -4, (2, 3): 0, (2, 5): 0, (3, 0): 0, (3, 2): 0, (3, 4): 0, (4, 3): 0, (4, 5): 0, (5, 0): 0, (5, 2): 0, (5, 4): 0}
+Player2 (Red,Python), move is: 4 3
+Current score for player1 (green), player2 (red): 3 0
+Player2 (Red) Time: 0.0002849102020263672
+------------------------------------------
+Player1 (Green,C++), move is: 3 5
+Current score for player1 (green), player2 (red): 3 0
+Player1 (Green) Time: 0.00028324127197265625
+------------------------------------------
+{(0, 5): -6, (1, 0): 0, (1, 4): 0, (2, 1): -4, (2, 3): -4, (2, 5): 0, (3, 0): 0, (3, 2): 0, (3, 4): 0, (4, 5): -6, (5, 0): 0, (5, 2): 0, (5, 4): 0}
+Player2 (Red,Python), move is: 1 0
+Current score for player1 (green), player2 (red): 3 0
+Player2 (Red) Time: 0.0004277229309082031
+------------------------------------------
+Player1 (Green,C++), move is: 1 1
+Current score for player1 (green), player2 (red): 6 0
+Player1 (Green) Time: 0.000125885009765625
+------------------------------------------
+{(0, 5): -6, (1, 4): -6, (2, 1): -6, (2, 3): -4, (2, 5): 0, (3, 0): 0, (3, 2): 0, (3, 4): 0, (4, 5): -6, (5, 0): 0, (5, 2): 0, (5, 4): 0}
+Player2 (Red,Python), move is: 2 5
+Current score for player1 (green), player2 (red): 6 0
+Player2 (Red) Time: 0.00041484832763671875
+------------------------------------------
+Player1 (Green,C++), move is: 1 5
+Current score for player1 (green), player2 (red): 9 0
+Player1 (Green) Time: 0.00017905235290527344
+------------------------------------------
+{(0, 5): -6, (1, 4): -6, (2, 1): -6, (2, 3): -4, (3, 0): 0, (3, 2): 0, (3, 4): 0, (4, 5): -6, (5, 0): 0, (5, 2): 0, (5, 4): 0}
+Player2 (Red,Python), move is: 5 2
+Current score for player1 (green), player2 (red): 9 0
+Player2 (Red) Time: 0.000324249267578125
+------------------------------------------
+Player1 (Green,C++), move is: 2 0
+Current score for player1 (green), player2 (red): 9 0
+Player1 (Green) Time: 0.000225067138671875
+------------------------------------------
+{(0, 5): -6, (1, 4): -6, (2, 1): -6, (2, 3): -4, (3, 0): 0, (3, 2): -6, (3, 4): 0, (4, 5): -6, (5, 0): 0, (5, 4): 0}
+Player2 (Red,Python), move is: 3 0
+Current score for player1 (green), player2 (red): 9 0
+Player2 (Red) Time: 0.00038123130798339844
+------------------------------------------
+Player1 (Green,C++), move is: 3 3
+Current score for player1 (green), player2 (red): 9 0
+Player1 (Green) Time: 0.00014591217041015625
+------------------------------------------
+{(0, 5): -6, (1, 4): -6, (2, 1): -6, (2, 3): -6, (3, 2): -6, (3, 4): 3, (4, 5): -6, (5, 0): -6, (5, 4): 0}
+Player2 (Red,Python), move is: 3 4
+Current score for player1 (green), player2 (red): 9 3
+Player2 (Red) Time: 0.0002930164337158203
+------------------------------------------
+Player1 (Green,C++), move is: 5 3
+Current score for player1 (green), player2 (red): 12 3
+Player1 (Green) Time: 0.00010514259338378906
+------------------------------------------
+{(0, 5): -6, (1, 4): -6, (2, 1): -6, (2, 3): -6, (3, 2): -12, (4, 5): -6, (5, 0): -6, (5, 4): 3}
+Player2 (Red,Python), move is: 5 4
+Current score for player1 (green), player2 (red): 12 6
+Player2 (Red) Time: 0.00022292137145996094
+------------------------------------------
+Player1 (Green,C++), move is: 2 4
+Current score for player1 (green), player2 (red): 12 6
+Player1 (Green) Time: 0.00011897087097167969
+------------------------------------------
+{(0, 5): -6, (1, 4): -12, (2, 1): -6, (2, 3): -3, (3, 2): -12, (4, 5): -6, (5, 0): -12}
+Player2 (Red,Python), move is: 2 3
+Current score for player1 (green), player2 (red): 12 9
+Player2 (Red) Time: 0.0001621246337890625
+------------------------------------------
+Player1 (Green,C++), move is: 1 3
+Current score for player1 (green), player2 (red): 18 9
+Player1 (Green) Time: 0.0001289844512939453
+------------------------------------------
+{(0, 5): -6, (1, 4): 0, (2, 1): -12, (3, 2): -12, (4, 5): -6, (5, 0): -12}
+Player2 (Red,Python), move is: 1 4
+Current score for player1 (green), player2 (red): 18 15
+Player2 (Red) Time: 0.0001709461212158203
+------------------------------------------
+Player1 (Green,C++), move is: 4 4
+Current score for player1 (green), player2 (red): 24 15
+Player1 (Green) Time: 0.0001239776611328125
+------------------------------------------
+{(0, 5): -6, (2, 1): -12, (3, 2): -12, (4, 5): 6, (5, 0): -12}
+Player2 (Red,Python), move is: 4 5
+Current score for player1 (green), player2 (red): 24 21
+Player2 (Red) Time: 0.00013685226440429688
+------------------------------------------
+Player1 (Green,C++), move is: 5 1
+Current score for player1 (green), player2 (red): 24 21
+Player1 (Green) Time: 9.703636169433594e-05
+------------------------------------------
+{(0, 5): -12, (2, 1): -12, (3, 2): -12, (5, 0): -12}
+Player2 (Red,Python), move is: 2 1
+Current score for player1 (green), player2 (red): 24 24
+Player2 (Red) Time: 0.0001220703125
+------------------------------------------
+Player1 (Green,C++), move is: 2 2
+Current score for player1 (green), player2 (red): 33 24
+Player1 (Green) Time: 8.225440979003906e-05
+------------------------------------------
+{(0, 5): -12, (3, 2): 0, (5, 0): -12}
+Player2 (Red,Python), move is: 3 2
+Current score for player1 (green), player2 (red): 33 30
+Player2 (Red) Time: 0.0001347064971923828
+------------------------------------------
+Player1 (Green,C++), move is: 3 1
+Current score for player1 (green), player2 (red): 45 30
+Player1 (Green) Time: 7.700920104980469e-05
+------------------------------------------
+{(0, 5): -12, (5, 0): -12}
+Player2 (Red,Python), move is: 0 5
+Current score for player1 (green), player2 (red): 45 30
+Player2 (Red) Time: 9.918212890625e-05
+------------------------------------------
+Player1 (Green,C++), move is: 5 5
+Current score for player1 (green), player2 (red): 51 30
+Player1 (Green) Time: 8.606910705566406e-05
+------------------------------------------
+{(5, 0): 0}
+Player2 (Red,Python), move is: 5 0
+Current score for player1 (green), player2 (red): 51 36
+Player2 (Red) Time: 5.698204040527344e-05
+------------------------------------------
+Player1 (Green,C++), move is: 0 0
+Current score for player1 (green), player2 (red): 63 36
+Player1 (Green) Time: 9.393692016601562e-05
+------------------------------------------
