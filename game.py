@@ -10,6 +10,7 @@ import ctypes as ct
 import sys
 import time
 TIME_LIMIT=10
+GAMES_N=100
 class Grid():
     def __init__(self):
         self.grid = np.full((6,6), None)
@@ -335,101 +336,108 @@ def gameLoop(screen, p1, p2):
 
 if __name__ == "__main__":
 
-    # TODO: remove log
-    log_name = './log/log' + str(random.randint(0, 99999999)).zfill(8) + '.txt'
-    sys.stdout = open(log_name, 'w')
-
-    # p1_language= {Human,CPP, JAVA,PYTHON}
-    # The 'Human' mode is used for testing your ai algorithm
-    p1_language= sys.argv[1]
-    
-    # p2_language ={CPP, JAVA,PYTHON}
-    p2_language= sys.argv[2]
-    
-    #player1 canbe a human player or a AI player
-    if p1_language=="Human":
-        p1 = Player("human", "X")
-        print("the first player is human")
-    elif p1_language =="CPP":
-        print("the first player is AI (C++)")
-        p1 = CDLL('./cpp/aiplayer.so')
-        p1.add_symbole(c_char(b"X"))
-        p1.add_isAI(False)
-        p1.get_move.restype = ctypes.POINTER(ctypes.c_int*2)
-    elif p1_language=="JAVA":
-        import jpype
-        from jpype import *
-        print("the first player is AI (JAVA)")
-        jarpath = os.path.join(os.path.abspath('.'), 'java/AIPlayer.jar')
-        jpype.startJVM(jpype.getDefaultJVMPath(), "-ea", "-Djava.class.path=%s" % jarpath)
-        AIPlayer = jpype.JClass('com.AIPlayer')
-        p1 = AIPlayer()
-        p1.add_symbole("X")
-        p1.add_isAI(False)
-    else:
-        print("the first player is AI (PYTHON)")
-        from python.AIPlayer import AIPlayer
-        p1 = AIPlayer("AI1", "X", isAI=False)
-
-
-    #player2 is an AI player, which can be implemented by C++, Java or Python
-    if p2_language=="Human":
-        p2 = Player("human", "O")
-        print("the first player is human")
-    elif p2_language =="CPP":
-        print("the second player is AI (C++)")
-        p2 = CDLL('./cpp/aiplayer.so')
-        p2.add_symbole(c_char(b"O"))
-        p2.add_isAI(True)
-        p2.get_move.restype = ctypes.POINTER(ctypes.c_int*2)
-    elif p2_language=="JAVA":
-        print("the second player is AI (JAVA)")
-        jarpath = os.path.join(os.path.abspath('.'), 'java/AIPlayer.jar')
-        if p1_language!="JAVA":
+    #for i in range(0, 5):
+        # p1_language= {Human,CPP, JAVA,PYTHON}
+        # The 'Human' mode is used for testing your ai algorithm
+        p1_language= sys.argv[1]
+        
+        # p2_language ={CPP, JAVA,PYTHON}
+        p2_language= sys.argv[2]
+        
+        #player1 canbe a human player or a AI player
+        if p1_language=="Human":
+            p1 = Player("human", "X")
+            print("the first player is human")
+        elif p1_language =="CPP":
+            print("the first player is AI (C++)")
+            p1 = CDLL('./cpp/aiplayer.so')
+            p1.add_symbole(c_char(b"X"))
+            p1.add_isAI(False)
+            p1.get_move.restype = ctypes.POINTER(ctypes.c_int*2)
+        elif p1_language=="JAVA":
             import jpype
             from jpype import *
+            print("the first player is AI (JAVA)")
+            jarpath = os.path.join(os.path.abspath('.'), 'java/AIPlayer.jar')
             jpype.startJVM(jpype.getDefaultJVMPath(), "-ea", "-Djava.class.path=%s" % jarpath)
-        AIPlayer = jpype.JClass('com.AIPlayer')
-        p2 = AIPlayer()
-        p2.add_symbole("O")
-    else:
-        print("the second player is AI (PYTHON)")
-        from python.AIPlayer import AIPlayer
-        p2 = AIPlayer("AI2", "O", isAI=True)
-        
-    screen = gui.init()
-    #determine the first player
-    whoplayfirst= sys.argv[3]
-    if True:
-
-        # Start the game loop
-        winner = gameLoop(screen, p1, p2)
-
-        if(winner == "Green" or winner=="Red"):
-            gui.writeScreen(screen, winner+" Won", line=1)
-        elif(winner=="-1"):
-            gui.writeScreen(screen, "TIME OUT", line=1)
-            gui.writeScreen(screen, "P2(R) wins", line=2)
-        elif(winner=="-2"):
-            gui.writeScreen(screen, "TIME OUT", line=1)
-            gui.writeScreen(screen, "P1(G) wins", line=2)
-        elif(winner=="-3"):
-            gui.writeScreen(screen, "Illegal move", line=1)
-            gui.writeScreen(screen, "P2(R) wins", line=2)
-        elif(winner=="-4"):
-            gui.writeScreen(screen, "Illegal move", line=1)
-            gui.writeScreen(screen, "P1(G) wins", line=2)
+            AIPlayer = jpype.JClass('com.AIPlayer')
+            p1 = AIPlayer()
+            p1.add_symbole("X")
+            p1.add_isAI(False)
         else:
-            gui.writeScreen(screen, "Draw!", line=1)
+            print("the first player is AI (PYTHON)")
+            from python.AIPlayer import AIPlayer
+            p1 = AIPlayer("AI1", "X", isAI=False)
 
-##        gui.writeScreen(screen, "Click to", line=2)
-        gui.ask(screen, " Exit!", line=3)
-        gui.clearScreen(screen)
 
-    sys.stdout.close()
-    sys.stdout = sys.__stdout__    
+        #player2 is an AI player, which can be implemented by C++, Java or Python
+        if p2_language=="Human":
+            p2 = Player("human", "O")
+            print("the first player is human")
+        elif p2_language =="CPP":
+            print("the second player is AI (C++)")
+            p2 = CDLL('./cpp/aiplayer.so')
+            p2.add_symbole(c_char(b"O"))
+            p2.add_isAI(True)
+            p2.get_move.restype = ctypes.POINTER(ctypes.c_int*2)
+        elif p2_language=="JAVA":
+            print("the second player is AI (JAVA)")
+            jarpath = os.path.join(os.path.abspath('.'), 'java/AIPlayer.jar')
+            if p1_language!="JAVA":
+                import jpype
+                from jpype import *
+                jpype.startJVM(jpype.getDefaultJVMPath(), "-ea", "-Djava.class.path=%s" % jarpath)
+            AIPlayer = jpype.JClass('com.AIPlayer')
+            p2 = AIPlayer()
+            p2.add_symbole("O")
+        else:
+            print("the second player is AI (PYTHON)")
+            from python4.AIPlayer import AIPlayer
+            p2 = AIPlayer("AI2", "O", isAI=True)
+            
+        win = 0
+        im = 0
+        to = 0
+        p = 0
+        screen = gui.init()
+        #determine the first player
+        whoplayfirst= sys.argv[3]
+        if True:
+                log_name = './log/log/vs_hmcts/' + str(random.randint(0, 99999999)).zfill(8) + '.txt'
+                sys.stdout = open(log_name, 'w')
+                # Start the game loop
+                winner = gameLoop(screen, p1, p2)
+                p += p1.get_score()
 
-    if p1_language =="JAVA" or p2_language=="JAVA":
-        jpype.shutdownJVM()
+                if(winner == "Green" or winner=="Red"):
+                    if (winner == "Green"): win += 1
+                    gui.writeScreen(screen, winner+" Won", line=1)
+                elif(winner=="-1"):
+                    to += 1
+                    gui.writeScreen(screen, "TIME OUT", line=1)
+                    gui.writeScreen(screen, "P2(R) wins", line=2)
+                elif(winner=="-2"):
+                    gui.writeScreen(screen, "TIME OUT", line=1)
+                    gui.writeScreen(screen, "P1(G) wins", line=2)
+                elif(winner=="-3"):
+                    im += 1
+                    gui.writeScreen(screen, "Illegal move", line=1)
+                    gui.writeScreen(screen, "P2(R) wins", line=2)
+                elif(winner=="-4"):
+                    gui.writeScreen(screen, "Illegal move", line=1)
+                    gui.writeScreen(screen, "P1(G) wins", line=2)
+                else:
+                    gui.writeScreen(screen, "Draw!", line=1)
+
+        ##        gui.writeScreen(screen, "Click to", line=2)
+                # gui.ask(screen, " Exit!", line=3)
+                gui.clearScreen(screen)
+
+                sys.stdout.close()
+                sys.stdout = sys.__stdout__
+                print("p:{},win:{},im:{},to:{}".format(p,win, im, to))
+
+                if p1_language =="JAVA" or p2_language=="JAVA":
+                    jpype.shutdownJVM()  
 
 

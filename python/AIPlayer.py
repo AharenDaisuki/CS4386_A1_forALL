@@ -4,10 +4,16 @@ import time
 from math import inf as infinity
 import random
 import numpy as np
-from multiprocessing import Pool
 
-PARALLEL_SIMULATION_N = 4
-MAX_ITERATION_TIME = 10
+TIME_LIMIT = 10
+TOLERANCE = 0.7
+
+##########################################
+# CS4386 Semester B, 2022-2023
+# Assignment 1
+# Name: LI Xiaoyang
+# Student ID: 56638660
+##########################################
 
 class Utils:
     @staticmethod
@@ -20,9 +26,21 @@ class Utils:
         return True
     
     @staticmethod
+    def transpose(state):
+        ret = [[],[],[],[],[],[]]
+        for row in range(0, 6):
+            for col in range(0, 6):
+                ret[col].append(state[row][col])
+        return ret
+    
+    @staticmethod
     def is_black_cell(cell):
         '''return if cell is black'''
         return (cell[0] + cell[1]) % 2 == 0
+    
+    # @staticmethod
+    # def is_black_cell(x,y):
+    #     return (x+y)%2 == 0
 
     @staticmethod
     def make_a_move(state, move, player):
@@ -33,7 +51,97 @@ class Utils:
         return ret
     
     @staticmethod
-    def all_moves(state, player):
+    def heuristic(x, y, state, player):
+        '''return all preferred moves'''
+        def isOccupied(row, col, state):
+            return state[row][col] != None
+        def row_penalty(row, state, isPlayerX):
+            black, white = 0, 0
+            for col in range(0, 6):
+                if isOccupied(row,col,state): 
+                    if Utils.is_black_cell([row,col]):
+                        black += 1
+                    else:
+                        white += 1
+            if isPlayerX:
+                if black == 3 and white<black: 
+                    return -6
+            else:
+                if white == 3 and black < white:
+                    return -6
+            if ((isPlayerX and row%2==1) or (not isPlayerX and row%2==0)):             
+                if(not isOccupied(row, 0, state) and isOccupied(row, 1, state) and not isOccupied(row, 2, state) and isOccupied(row, 3, state)):
+                    return -3
+                if(not isOccupied(row, 0, state) and not isOccupied(row, 1, state) and isOccupied(row, 2, state) and isOccupied(row, 3, state) and not isOccupied(row, 4, state)):
+                    return -3
+                if(not isOccupied(row, 0, state) and isOccupied(row, 1, state) and isOccupied(row, 2, state) and not isOccupied(row, 3, state) and not isOccupied(row, 4, state)):
+                    return -3    
+                if(not isOccupied(row, 1, state) and isOccupied(row, 2, state) and not isOccupied(row, 3, state) and isOccupied(row, 4, state) and not isOccupied(row, 5, state)):
+                    return -3
+                if(not isOccupied(row, 2, state)and not isOccupied(row, 3, state) and isOccupied(row, 4, state) and isOccupied(row, 5, state)):
+                    return -3
+                if(not isOccupied(row, 2, state) and isOccupied(row, 3, state) and isOccupied(row, 4, state) and not isOccupied(row, 5, state)):
+                    return -3
+            if ((isPlayerX and row%2==0) or (not isPlayerX and row%2==1)):
+                if (isOccupied(row, 0, state) and not isOccupied(row, 1, state) and isOccupied(row, 2, state) and not isOccupied(row, 3, state)):
+                    return -3
+                if(not isOccupied(row, 0, state) and not isOccupied(row, 1, state) and isOccupied(row, 2, state) and isOccupied(row, 3, state) and not isOccupied(row, 4, state)):
+                    return -3
+                if(not isOccupied(row, 0, state) and isOccupied(row, 1, state) and isOccupied(row, 2, state) and not isOccupied(row, 3, state) and not isOccupied(row, 4, state)):
+                    return -3
+                if(not isOccupied(row, 1, state) and isOccupied(row, 2, state) and not isOccupied(row, 3, state) and isOccupied(row, 4, state) and not isOccupied(row, 5, state)):
+                    return -3
+                if(not isOccupied(row, 2, state) and not isOccupied(row, 3, state) and isOccupied(row, 4, state) and isOccupied(row, 5, state)):
+                    return -3                                
+                if(not isOccupied(row, 2, state) and isOccupied(row, 3, state) and isOccupied(row, 4, state) and not isOccupied(row, 5, state)):
+                    return -3                                    
+            return 0
+        def col_penalty(col, state, isPlayerX):
+            trans_state = Utils.transpose(state)
+            return row_penalty(col, trans_state, isPlayerX)
+        h = 0
+        symbole = player
+        isPlayerX = (symbole=='X')
+        if state[x][y] != None:
+            return -np.inf
+        if isPlayerX and not Utils.is_black_cell([x,y]):
+            return -np.inf
+        if not isPlayerX and Utils.is_black_cell([x,y]):
+            return -np.inf
+        result = Utils.make_a_move(state, [x,y], player)
+        # print(result)
+        h += Utils.reward(result, [x, y])
+        # print("after reward: " + str(h))
+        h += row_penalty(x, result, isPlayerX)
+        # print("after row penalty: " + str(h))
+        h += col_penalty(y, result, isPlayerX)
+        # print("after column penalty: " + str(h))
+        return h
+    
+    @staticmethod
+    def heuristic_moves(state, player):
+        max_util = -np.inf
+        utility = []
+        cells = []
+        for row in range(0, 6):
+            utility.append([])
+            for col in range(0, 6):
+                utility[row].append(Utils.heuristic(row,col,state,player))
+                if utility[row][col] > max_util:
+                    max_util = utility[row][col]
+        # print("max utility: " + str(max_util))
+        for row in range(0, 6):
+            for col in range(0, 6):
+                if (utility[row][col] == max_util):
+                    cells.append([row, col])
+        assert(len(cells) > 0)
+        # print(cells)
+        return cells
+
+
+       
+    @staticmethod
+    def get_all_moves(state, player):
         '''return all possible moves'''
         cells = []
         isPlayerX = (player=='X') # is player 1?
@@ -48,40 +156,63 @@ class Utils:
                 for y, cell in enumerate(row):
                     if cell is None and not Utils.is_black_cell([x, y]):
                         cells.append([x, y]) 
-        return cells 
+        return cells
     
     @staticmethod
-    def reward(state, move):
-        '''evaluate last move immediately after move'''
-        def check_row(state, row):
-            if state[row][0]!=None and state[row][1]!=None and state[row][2]!=None and state[row][3]!=None and state[row][4]!=None and state[row][5]!=None:
-                return 6
-            if state[row][0]!=None and state[row][1]!=None and state[row][2]!=None and state[row][3]==None:
-                return 3
-            if state[row][0]==None and state[row][1]!=None and state[row][2]!=None and state[row][3]!=None and state[row][4]==None:
-                return 3
-            if state[row][1]==None and state[row][2]!=None and state[row][3]!=None and state[row][4]!=None and state[row][5]==None:
-                return 3 
-            if state[row][2]==None and state[row][3]!=None and state[row][4]!=None and state[row][5]!=None:
-                return 3  
-            return 0
-        def check_col(state, col):
-            if state[0][col]!=None and state[1][col]!=None and state[2][col]!=None and state[3][col]!=None and state[4][col]!=None and state[5][col]!=None:
-                return 6
-            if state[0][col]!=None and state[1][col]!=None and state[2][col]!=None and state[3][col]==None:
-                return 3
-            if state[0][col]==None and state[1][col]!=None and state[2][col]!=None and state[3][col]!=None and state[4][col]==None:
-                return 3
-            if state[1][col]==None and state[2][col]!=None and state[3][col]!=None and state[4][col]!=None and state[5][col]==None:
-                return 3 
-            if state[2][col]==None and state[3][col]!=None and state[4][col]!=None and state[5][col]!=None:
-                return 3  
-            return 0
-        utility = 0
-        row, col = move[0], move[1]
-        utility += check_row(state, row)
-        utility += check_col(state, col)
-        return utility
+    def all_moves(state, player, heuristic):
+        return Utils.heuristic_moves(state, player) if heuristic else Utils.get_all_moves(state, player)
+
+
+    @staticmethod
+    def reward(grid, move):
+        #print("xy:",x,y)
+        x, y = move[0], move[1]
+        score=0
+
+        #1.check horizontal
+        if((grid[x][0] != None) and (grid[x][1] != None) and  (grid[x][2]!= None) and (grid[x][3] != None) and (grid[x][4] != None) and (grid[x][5]  != None)):  
+            score+=6
+            #print("horizontal 6")
+        else:
+            if (grid[x][0] != None) and (grid[x][1] != None) and  (grid[x][2]!= None) and (grid[x][3] == None):
+                if y==0 or y==1 or y==2:
+                    score+=3
+                    #print("1horizontal 3")
+            elif (grid[x][0] == None) and (grid[x][1] != None) and  (grid[x][2]!= None) and (grid[x][3] != None) and (grid[x][4] == None):
+                if y==1 or y==2 or y==3:
+                    score+=3
+                    #print("2horizontal 3")
+            elif  (grid[x][1] == None) and (grid[x][2] != None) and  (grid[x][3]!= None) and (grid[x][4] != None) and (grid[x][5] == None):
+                if y==2 or y==3 or y==4:
+                    score+=3
+                    #print("3horizontal 3")
+            elif  (grid[x][2] == None) and  (grid[x][3]!= None) and (grid[x][4] != None) and (grid[x][5] != None):
+                if y==3 or y==4 or y==5:
+                    score+=3
+                    #print("4horizontal 3")
+                
+        #2.check vertical
+        if((grid[0][y] != None) and (grid[1][y] != None) and (grid[2][y] != None) and (grid[3][y] != None) and (grid[4][y]!= None) and (grid[5][y]!= None)):
+            score+=6
+            #print("vertical 6")
+        else:
+            if (grid[0][y] != None) and (grid[1][y] != None) and  (grid[2][y]!= None) and (grid[3][y] == None):
+                if x==0 or x==1 or x==2:
+                    score+=3
+                    #print("1vertical 3")
+            elif (grid[0][y] == None) and (grid[1][y] != None) and  (grid[2][y]!= None) and (grid[3][y] != None) and (grid[4][y] == None):
+                if x==1 or x==2 or x==3:
+                    score+=3
+                    #print("2vertical 3")
+            elif (grid[1][y] == None) and (grid[2][y] != None) and  (grid[3][y]!= None) and (grid[4][y] != None) and (grid[5][y] == None):
+                if x==2 or x==3 or x==4:
+                    score+=3
+                    #print("3vertical 3")
+            elif  (grid[2][y] == None) and  (grid[3][y]!= None) and (grid[4][y] != None) and (grid[5][y] != None):
+                if x==3 or x==4 or x==5:
+                    score+=3
+                    #print("4vertical 3")
+        return score
     
     @staticmethod
     def playerBinToSymbol(binary):
@@ -131,9 +262,8 @@ class AIPlayer(object):
         self.symbole = symbole
         self.isAI = isAI
         self.score = 0
-        self.move_n = 0 # TODO: record #move
-        self.root = None # TODO: maintain a root node
-        self.enemy_score = 0 # TODO: maintain enemy score
+        self.move_n = 0
+        self.heuristic = True
 
     def stat(self):
         return self.name + " won " + str(self.won_games) + " games, " + str(self.draw_games) + " draw."
@@ -153,25 +283,6 @@ class AIPlayer(object):
     def add_score(self,score):
         self.score+=score
 
-    def _update_root(self, node):
-        self.root = node     
-
-    def _add_enemy_score(self, score):
-        self.enemy_score += score     
-
-    def _get_enemy_score(self):
-        return self.enemy_score    
-
-    def _get_move_n(self):
-        return self.move_n
-
-    def _confirm_move(self, move):
-        for child in self.root.children:
-            if move == child.action:
-                # assert(child.player ^ 1 == self.root.player)
-                self._update_root(child)
-        self.move_n += 1  
-    
     # deprecated
     # def available_cells(self,state,player):
     #     cells = []
@@ -181,7 +292,7 @@ class AIPlayer(object):
     #                 cells.append([x, y])
     #     return cells
     
-    def mcts(self, timer):
+    def mcts(self, player, state, timer):
         def ucb(node, c = np.sqrt(0.5)):
             '''return ucb of node'''
             # TODO: modify c
@@ -195,35 +306,13 @@ class AIPlayer(object):
         
         def expand(node):
             '''expand the leaf node by adding all possible moves'''
-            # def expand_child(parent_state, parent_player, move, node):
-            #     child_state = Utils.make_a_move(parent_state, move, Utils.playerBinToSymbol(parent_player))
-            #     node.children.append(
-            #             MonteCarloTreeNode(
-            #                 player=parent_player^1, 
-            #                 state=child_state,
-            #                 action=move,
-            #                 parent=node,
-            #                 w = 0,
-            #                 n = 0
-            #             )
-            #         )
-            #     print(len(node.child))
-            #     return
-                
             parent_state = node.state
             parent_player = node.player
             #child_player = parent_player ^ 1
             # assert(parent_player==1 and child_player==0 or parent_player==0 and child_player==1)
             if not node.children and not Utils.is_game_over(parent_state):
-                # all_moves = Utils.all_moves(parent_state, Utils.playerBinToSymbol(parent_player)) 
-                # move_n = len(all_moves)
-                # pool = Pool(move_n)
-                # for move in all_moves:
-                #     pool.apply_async(expand_child, args=(parent_state, parent_player, move, node))
-                # pool.close()
-                # pool.join()
-
-                for move in Utils.all_moves(parent_state, Utils.playerBinToSymbol(parent_player)):
+                move_list = Utils.all_moves(parent_state, Utils.playerBinToSymbol(parent_player), self.heuristic)
+                for move in move_list:
                     child_state = Utils.make_a_move(parent_state, move, Utils.playerBinToSymbol(parent_player))
                     node.children.append(
                         MonteCarloTreeNode(
@@ -239,77 +328,36 @@ class AIPlayer(object):
         
         def simulate(state, player):
             '''return simulate result in terms of player'''
-            my_score = self.get_score()
-            enemy_score = self._get_enemy_score()
-            root_player = self.root.player
             tmp_state, tmp_player = state, player
+            child_score, enemy_score = 0, 0
             while not Utils.is_game_over(tmp_state):
                 player_symbol = Utils.playerBinToSymbol(tmp_player)
-                games = Utils.all_moves(tmp_state, player_symbol)
-                        # assert(len(games) > 0)
-                move = random.choice(games)
+                games = Utils.get_all_moves(tmp_state, player_symbol)
+                move = random.choice(games) # TODO: add heuristic
                 tmp_state = Utils.make_a_move(tmp_state, move, player_symbol)
-                if tmp_player==root_player:
-                    my_score += Utils.reward(tmp_state, move)
-                elif tmp_player==root_player^1:
+                if tmp_player==player:
+                    child_score += Utils.reward(tmp_state, move)
+                elif tmp_player==player^1:
                     enemy_score += Utils.reward(tmp_state, move)
                 tmp_player ^= 1 # interchange player
-            if my_score > enemy_score:
+            if child_score > enemy_score:
                 return 1
-            elif my_score < enemy_score:
+            elif child_score < enemy_score:
                 return -1
             return 0
-                    
-        # def multi_simulate(state, player):
-        #     '''simulate 4 games in a row'''
-        #     # def simulate(state, player):
-        #     #     '''return simulate result in terms of player'''
-        #     #     my_score = self.get_score()
-        #     #     enemy_score = self._get_enemy_score()
-        #     #     tmp_state, tmp_player = state, player
-        #     #     while not Utils.is_game_over(tmp_state):
-        #     #         player_symbol = Utils.playerBinToSymbol(tmp_player)
-        #     #         games = Utils.all_moves(tmp_state, player_symbol)
-        #     #         # assert(len(games) > 0)
-        #     #         move = random.choice(games)
-        #     #         tmp_state = Utils.make_a_move(tmp_state, move, player_symbol)
-        #     #         if tmp_player==self.root.player:
-        #     #             my_score += Utils.reward(tmp_state, move)
-        #     #         elif tmp_player==self.root.player^1:
-        #     #             enemy_score += Utils.reward(tmp_state, move)
-        #     #         tmp_player ^= 1 # interchange player
-        #     #     if my_score > enemy_score:
-        #     #         return 1
-        #     #     elif my_score < enemy_score:
-        #     #         return -1
-        #     #     return 0
-            
-        #     my_score = self.get_score()
-        #     enemy_score = self._get_enemy_score()
-        #     root_player = self.root.player
-        #     pool = Pool(PARALLEL_SIMULATION_N)
-        #     simulation_ret = [pool.apply_async(simulate, args=(state, player, my_score, enemy_score, root_player)) for i in range(0, PARALLEL_SIMULATION_N)]
-        #     pool.close()
-        #     pool.join()
-        #     # print([s.get() for s in simulation_ret])
-        #     return [s.get() for s in simulation_ret]
 
         
         def backpropagate(node, utility):
-            node_player = node.player
-            root_player = self.root.player
-            if node_player==root_player^1:
-                if utility > 0:
-                    node.w += utility
-            elif node_player==root_player:
-                if utility < 0:
-                    node.w += -utility
+            '''update path'''
+            # TODO: definition?
+            if utility < 0:
+                node.w -= utility
             node.n += 1
             if node.parent:
-                backpropagate(node.parent, utility)
+                backpropagate(node.parent, -utility)
 
         # initial game state
-        root = self.root
+        root = MonteCarloTreeNode(player=Utils.playerSymbolToBin(player), state=state, w=0, n=0)
         iterative_n = 0
         while True:
             leaf = select(root)
@@ -319,58 +367,30 @@ class AIPlayer(object):
             iterative_n += 1
             if timer.check():
                 break
-        
-        total_n = 0
+
+        # print(root)
         # for child in root.children:
-        #     total_n += child.n
         #     print('**************************')
-        #     print('move: ' + str(child.action))
         #     print(child)
-        #     print('**************************')
-        # print('root #games: ' + str(root.n))
-        # print('child #games: ' + str(total_n))        
+        #     print('**************************')        
 
         # print('iteration:' + str(iterative_n))
-        assert(len(root.children) > 0)
+        # assert(len(root.children) > 0)
         optimal_solution = max(root.children, key=lambda x : x.w/x.n)
-
         # print(optimal_solution)
         return optimal_solution.action
             
     def get_move(self,state,player):
         '''return a move'''
-        timer = Timer(10, 1.2)
-        player_bin = Utils.playerSymbolToBin(player)
-        # assert(player_bin==1 or player_bin==0)  
-        flag, last_move = False, None
-        if self._get_move_n()==0:
-            self._update_root(MonteCarloTreeNode(player=player_bin, state=state, w=0, n=0))
-            if player_bin==0:
-                for x, row in enumerate(state):
-                    for y, cell in enumerate(row):
-                        if Utils.is_black_cell([x, y]) and state[x][y]!=None:
-                            flag, last_move = True, [x, y]
-        else:
-            # print(self.root.state)
-            # print(state)
-            for row in range(0, 6):
-                for column in range(0, 6):
-                    if self.root.state[row][column]==None and state[row][column]==Utils.playerBinToSymbol(player_bin^1):
-                        flag, last_move = True, [row, column]
-            # flag, last_move = Utils.enemyMove(self.root.state, state, player_bin)
-
-        if flag:
-            self._add_enemy_score(Utils.reward(state, last_move))
-            # print('enemy: ' + str(last_move) + '=>' + str(self.enemy_score))
-            # my root => enemy
-            if self._get_move_n() > 0:
-                for child in self.root.children:
-                    if child.action == last_move:
-                        self._update_root(child)    
-        # time offset in seconds                
-
-        # assert(self.root != None)
-        # assert(self.root.player == player_bin)
-        move = self.mcts(timer)
-        self._confirm_move(move)
+        # print('mcts with heuristic')
+        timer = Timer(TIME_LIMIT, TOLERANCE)
+        # first move
+        if self.move_n == 0:
+            self.move_n += 1
+            return random.choice(Utils.all_moves(state, player, self.heuristic))
+                      
+        move = self.mcts(player, state, timer)
+        # move_list = Utils.all_moves(state, player, self.move_n)
+        # move = random.choice(move_list)
+        self.move_n += 1
         return move       
